@@ -10,7 +10,19 @@ apps that let users scan notes, homework, business cards, receipts, or anything 
 Open `build.gradle` and add this to `dependencies`
 
 ```bash
-implementation 'com.gennadysx:documentscanner:1.3.5'
+
+# Step 1. Add to root build.gradle
+	dependencyResolutionManagement {
+		repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
+		repositories {
+			mavenCentral()
+			maven { url 'https://jitpack.io' }
+		}
+	}
+  
+
+# Step 2. Add the dependency
+  implementation 'com.github.GennadySX:android-document-scanner:1.4.0'
 ```
 
 ## Examples
@@ -261,7 +273,8 @@ public class MainActivity extends AppCompatActivity {
 
 ## License
 
-Copyright 2022 David Marcus
+Copyright 2022 David Marcus\
+Modified by GennadySX @2023
 
 Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
 
