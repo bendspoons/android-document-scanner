@@ -54,9 +54,11 @@ afterEvaluate {
             release(MavenPublication) {
                 groupId = "com.gennadysx"
                 artifactId = "documentscanner"
-                version = "1.4.1"
+                version = "1.4.2"
 
                 from components.release
 
+            }
+        }
     }
 }
