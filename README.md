@@ -22,7 +22,7 @@ Open `build.gradle` and add this to `dependencies`
   
 
 # Step 2. Add the dependency
-  implementation 'com.github.GennadySX:android-document-scanner:1.4.0'
+  implementation 'com.github.GennadySX:android-document-scanner:1.4.1'
 ```
 
 ## Examples
