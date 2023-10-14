@@ -10,7 +10,7 @@ apps that let users scan notes, homework, business cards, receipts, or anything 
 Open `build.gradle` and add this to `dependencies`
 
 ```bash
-implementation 'com.websitebeaver:documentscanner:1.3.5'
+implementation 'com.gennadysx:documentscanner:1.3.5'
 ```
 
 ## Examples
@@ -207,12 +207,12 @@ this library with Java.
 ```java
 package com.your.project;
 
-import com.websitebeaver.documentscanner.utils.ImageUtil;
+import com.gennadysx.documentscanner.utils.ImageUtil;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.ImageView;
 import androidx.appcompat.app.AppCompatActivity;
-import com.websitebeaver.documentscanner.DocumentScanner;
+import com.gennadysx.documentscanner.DocumentScanner;
 
 public class MainActivity extends AppCompatActivity {
 

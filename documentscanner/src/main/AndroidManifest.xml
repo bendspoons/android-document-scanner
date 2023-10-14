@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.websitebeaver.documentscanner">
+    package="com.gennadysx.documentscanner">
 
     <uses-feature
         android:name="android.hardware.camera"
@@ -11,13 +11,13 @@
 
     <application>
         <activity
-            android:name=".DocumentScannerActivity"
+            android:name="com.gennadysx.documentscanner.DocumentScannerActivity"
             android:configChanges="orientation|screenSize"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.FullScreen" />
 
         <provider
-            android:name="com.websitebeaver.documentscanner.DocumentScannerFileProvider"
+            android:name="com.gennadysx.documentscanner.DocumentScannerFileProvider"
             android:authorities="${applicationId}.DocumentScannerFileProvider"
             android:exported="false"
             android:grantUriPermissions="true">

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.websitebeaver.documentscanner.demo">
+    package="com.gennadysx.documentscanner.demo">
 
     <application
         android:allowBackup="true"
@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Demo">
         <activity
-            android:name=".MainActivity"
+            android:name="com.gennadysx.documentscanner.demo.MainActivity"
             android:configChanges="orientation|screenSize"
             android:exported="true">
             <intent-filter>
