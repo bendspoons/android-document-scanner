@@ -37,12 +37,12 @@ Open `build.gradle` and add this to `dependencies`
 ```kotlin
 package com.your.project
 
-import com.websitebeaver.documentscanner.utils.ImageUtil
+import com.gennadysx.documentscanner.utils.ImageUtil
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.websitebeaver.documentscanner.DocumentScanner
+import com.gennadysx.documentscanner.DocumentScanner
 
 class MainActivity : AppCompatActivity() {
     private lateinit var croppedImageView: ImageView
@@ -102,13 +102,13 @@ maxNumDocuments to 2.
 ```kotlin
 package com.your.project
 
-import com.websitebeaver.documentscanner.utils.ImageUtil
+import com.gennadysx.documentscanner.utils.ImageUtil
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.websitebeaver.documentscanner.DocumentScanner
-import com.websitebeaver.documentscanner.constants.ResponseType
+import com.gennadysx.documentscanner.DocumentScanner
+import com.gennadysx.documentscanner.constants.ResponseType
 
 class MainActivity : AppCompatActivity() {
     private lateinit var croppedImageView: ImageView
@@ -162,13 +162,13 @@ the max number of scans to 1.
 ```kotlin
 package com.your.project
 
-import com.websitebeaver.documentscanner.utils.ImageUtil
+import com.gennadysx.documentscanner.utils.ImageUtil
 import android.os.Bundle
 import android.util.Log
 import android.widget.ImageView
 import androidx.appcompat.app.AppCompatActivity
-import com.websitebeaver.documentscanner.DocumentScanner
-import com.websitebeaver.documentscanner.constants.ResponseType
+import com.gennadysx.documentscanner.DocumentScanner
+import com.gennadysx.documentscanner.constants.ResponseType
 
 class MainActivity : AppCompatActivity() {
     private lateinit var croppedImageView: ImageView
