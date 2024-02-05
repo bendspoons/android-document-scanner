@@ -75,66 +75,70 @@ class DocumentScannerActivity : AppCompatActivity() {
         onPhotoCaptureSuccess = {
             // user takes photo
             originalPhotoPath ->
+            try {
 
-            // if maxNumDocuments is 3 and this is the 3rd photo, hide the new photo button since
-            // we reach the allowed limit
-            if (documents.size == maxNumDocuments - 1) {
-                val newPhotoButton: ImageButton = findViewById(R.id.new_photo_button)
-                newPhotoButton.isClickable = false
-                newPhotoButton.visibility = View.INVISIBLE
-            }
+              // if maxNumDocuments is 3 and this is the 3rd photo, hide the new photo button since
+              // we reach the allowed limit
+              if (documents.size == maxNumDocuments - 1) {
+                  val newPhotoButton: ImageButton = findViewById(R.id.new_photo_button)
+                  newPhotoButton.isClickable = false
+                  newPhotoButton.visibility = View.INVISIBLE
+              }
 
-            // get bitmap from photo file path
-            val photo: Bitmap = ImageUtil().getImageFromFilePath(originalPhotoPath)
+              // get bitmap from photo file path
+              val photo: Bitmap = ImageUtil().getImageFromFilePath(originalPhotoPath)
 
-            // get document corners by detecting them, or falling back to photo corners with
-            // slight margin if we can't find the corners
-            val corners = try {
-                val (topLeft, topRight, bottomLeft, bottomRight) = getDocumentCorners(photo)
-                Quad(topLeft, topRight, bottomRight, bottomLeft)
-            } catch (exception: Exception) {
-                finishIntentWithError(
-                    "unable to get document corners: ${exception.message}"
-                )
-                return@CameraUtil
-            }
+              // get document corners by detecting them, or falling back to photo corners with
+              // slight margin if we can't find the corners
+              val corners = try {
+                  val (topLeft, topRight, bottomLeft, bottomRight) = getDocumentCorners(photo)
+                  Quad(topLeft, topRight, bottomRight, bottomLeft)
+              } catch (exception: Exception) {
+                  finishIntentWithError(
+                      "unable to get document corners: ${exception.message}"
+                  )
+                  return@CameraUtil
+              }
 
-            document = Document(originalPhotoPath, photo.width, photo.height, corners)
+              document = Document(originalPhotoPath, photo.width, photo.height, corners)
 
-            if (letUserAdjustCrop) {
-                // user is allowed to move corners to make corrections
-                try {
-                    // set preview image height based off of photo dimensions
-                    imageView.setImagePreviewBounds(photo, screenWidth, screenHeight)
+              if (letUserAdjustCrop) {
+                  // user is allowed to move corners to make corrections
+                  try {
+                      // set preview image height based off of photo dimensions
+                      imageView.setImagePreviewBounds(photo, screenWidth, screenHeight)
 
-                    // display original photo, so user can adjust detected corners
-                    imageView.setImage(photo)
+                      // display original photo, so user can adjust detected corners
+                      imageView.setImage(photo)
 
-                    // document corner points are in original image coordinates, so we need to
-                    // scale and move the points to account for blank space (caused by photo and
-                    // photo container having different aspect ratios)
-                    val cornersInImagePreviewCoordinates = corners
-                        .mapOriginalToPreviewImageCoordinates(
-                            imageView.imagePreviewBounds,
-                            imageView.imagePreviewBounds.height() / photo.height
-                        )
+                      // document corner points are in original image coordinates, so we need to
+                      // scale and move the points to account for blank space (caused by photo and
+                      // photo container having different aspect ratios)
+                      val cornersInImagePreviewCoordinates = corners
+                          .mapOriginalToPreviewImageCoordinates(
+                              imageView.imagePreviewBounds,
+                              imageView.imagePreviewBounds.height() / photo.height
+                          )
 
-                    // display cropper, and allow user to move corners
-                    imageView.setCropper(cornersInImagePreviewCoordinates)
-                } catch (exception: Exception) {
-                    finishIntentWithError(
-                        "unable get image preview ready: ${exception.message}"
-                    )
-                    return@CameraUtil
-                }
-            } else {
-                // user isn't allowed to move corners, so accept automatically detected corners
-                document?.let { document ->
-                    documents.add(document)
-                }
+                      // display cropper, and allow user to move corners
+                      imageView.setCropper(cornersInImagePreviewCoordinates)
+                  } catch (exception: Exception) {
+                      finishIntentWithError(
+                          "unable get image preview ready: ${exception.message}"
+                      )
+                      return@CameraUtil
+                  }
+              } else {
+                  // user isn't allowed to move corners, so accept automatically detected corners
+                  document?.let { document ->
+                      documents.add(document)
+                  }
 
-                // create cropped document image, and return file path to complete document scan
-                cropDocumentAndFinishIntent()
+                  // create cropped document image, and return file path to complete document scan
+                  cropDocumentAndFinishIntent()
+              }
+            } catch (exception: NumberFormatException) {
+              // openCamera()
             }
         },
         onCancelPhoto = {
